@@ -1,10 +1,56 @@
-/* Custom theme: dark mode, custom colors, overrides */
+/* Custom minimalist theme: dark mode, blue accents, overrides */
 :root {
   --color-primary: #2563eb;
-  --color-accent: #f59e42;
+  --color-bg: #fff;
+  --color-text: #111;
+  --color-border: #e5e7eb;
+  --color-card: #fff;
 }
-.dark body {
+
+body.dark {
   background: #18181b;
   color: #f3f4f6;
 }
-/* ...more theme styles... */
+
+body.dark .bg-white {
+  background: #23272f !important;
+  color: #f3f4f6 !important;
+}
+
+body.dark .shadow {
+  box-shadow: 0 2px 8px 0 rgba(37,99,235,0.15);
+}
+
+body.dark .text-primary {
+  color: #60a5fa !important;
+}
+
+body.dark .bg-primary {
+  background: #1e40af !important;
+  color: #fff !important;
+}
+
+body.dark .table th {
+  background: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+body.dark .table tr:hover {
+  background: #1e293b !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+}
+body.dark ::-webkit-scrollbar-thumb {
+  background: #60a5fa;
+}
+
+/* Minimalist accent for links, etc. */
+a, .accent {
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover, .accent:hover {
+  color: #1746b3;
+}

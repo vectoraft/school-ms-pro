@@ -36,10 +36,20 @@ const pageComponents = {
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState('dashboard');
+  const [stats, setStats] = useState(null);
   // ...user, role, permissions, etc...
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1200); // Simulate preloader
+    // Fetch dashboard stats for cards
+    fetch('/wp-json/schoolms/v1/analytics')
+      .then(res => res.ok ? res.json() : Promise.reject('Failed to load stats'))
+      .then(data => setStats({
+        students: data.students_count,
+        funds: data.total_funds,
+        staff: data.admins_count,
+      }))
+      .catch(() => setStats(null));
   }, []);
 
   if (loading) return <Preloader />;
@@ -47,12 +57,12 @@ const App = () => {
   const PageComponent = pageComponents[page] || MainDashboard;
 
   return (
-    <div className="flex min-h-screen bg-gray-50 font-montserrat">
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950 font-montserrat transition-colors">
       <Sidebar onNavigate={setPage} />
       <div className="flex-1 flex flex-col">
         <ProfileMenu />
         <main className="flex-1 p-6">
-          <PageComponent />
+          {page === 'dashboard' ? <MainDashboard stats={stats} /> : <PageComponent />}
         </main>
       </div>
     </div>

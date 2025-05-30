@@ -1,17 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PDFExport from './PDFExport.jsx';
+import axios from '../axios.js';
 
-const initialAnalytics = [
-  { metric: 'Total Students', value: 1200 },
-  { metric: 'Total Funds', value: 45000 },
-  { metric: 'Active Staff', value: 32 },
-  { metric: 'Graduates', value: 300 },
-];
+const getColor = value => {
+  if (typeof value !== 'number') return '';
+  if (value < 0) return 'text-red-600';
+  if (value > 0) return 'text-green-600';
+  return '';
+};
 
 const AnalyticsPage = () => {
   const tableRef = useRef();
-  const [analytics, setAnalytics] = useState(initialAnalytics);
+  const [analytics, setAnalytics] = useState([]);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get('analytics')
+      .then(res => {
+        setAnalytics(Object.entries(res.data).map(([metric, value]) => ({ metric, value })));
+        setLoading(false);
+      })
+      .catch(e => {
+        setError('Could not load analytics.');
+        setLoading(false);
+      });
+  }, []);
+
   const filtered = analytics.filter(a =>
     a.metric.toLowerCase().includes(search.toLowerCase())
   );
@@ -20,18 +36,12 @@ const AnalyticsPage = () => {
     return tableRef.current ? tableRef.current.outerHTML : '';
   };
 
-  // Bulk add demo metrics
-  const handleBulkAdd = () => {
-    const bulk = Array.from({ length: 10 }, (_, i) => ({
-      metric: `Metric ${analytics.length + i + 1}`,
-      value: Math.floor(Math.random() * 10000),
-    }));
-    setAnalytics([...analytics, ...bulk]);
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Analytics</h2>
+      <h2 className="text-xl font-bold mb-4">Analytics <span className="text-gray-400 text-base">(Dynamic from API)</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input
@@ -41,7 +51,6 @@ const AnalyticsPage = () => {
             onChange={e => setSearch(e.target.value)}
             className="border px-2 py-1 rounded"
           />
-          <button onClick={handleBulkAdd} className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">Bulk Add</button>
         </div>
         <PDFExport htmlContent={getTableHtml()} />
       </div>
@@ -57,7 +66,7 @@ const AnalyticsPage = () => {
             {filtered.map((row, idx) => (
               <tr key={idx}>
                 <td className="px-4 py-2 whitespace-nowrap">{row.metric}</td>
-                <td className="px-4 py-2 whitespace-nowrap">{row.value.toLocaleString()}</td>
+                <td className={`px-4 py-2 whitespace-nowrap ${getColor(row.value)}`}>{typeof row.value === 'number' ? row.value.toLocaleString() : row.value}</td>
               </tr>
             ))}
             {filtered.length === 0 && (
