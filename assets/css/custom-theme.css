@@ -1,0 +1,10 @@
+/* Custom theme: dark mode, custom colors, overrides */
+:root {
+  --color-primary: #2563eb;
+  --color-accent: #f59e42;
+}
+.dark body {
+  background: #18181b;
+  color: #f3f4f6;
+}
+/* ...more theme styles... */
