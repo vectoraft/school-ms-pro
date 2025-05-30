@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GlobalSearchBar from './GlobalSearchBar.jsx';
 
 const Sidebar = ({ onNavigate }) => {
   const [dark, setDark] = useState(false);
@@ -15,6 +16,7 @@ const Sidebar = ({ onNavigate }) => {
           {dark ? '🌙' : '☀️'}
         </button>
       </div>
+      <GlobalSearchBar onResult={null} />
       <nav className="flex-1 p-4 space-y-2">
         <button onClick={() => onNavigate('dashboard')} className="block w-full text-left px-3 py-2 rounded hover:bg-blue-100 dark:hover:bg-gray-800">Dashboard</button>
         <button onClick={() => onNavigate('analytics')} className="block w-full text-left px-3 py-2 rounded hover:bg-blue-100 dark:hover:bg-gray-800">Analytics</button>

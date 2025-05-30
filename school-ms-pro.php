@@ -20,6 +20,13 @@ add_action('init', function() {
     }
 });
 
+// Register shortcodes
+add_action('init', function() {
+    if (class_exists('School_MS_Pro_Shortcodes')) {
+        School_MS_Pro_Shortcodes::register_shortcodes();
+    }
+});
+
 // Register plugin settings (example: global options)
 add_action('admin_init', function() {
     register_setting('schoolms_options', 'schoolms_global_settings');
@@ -47,6 +54,43 @@ add_action('admin_menu', function() {
         submit_button();
         echo '</form></div>';
     });
+});
+
+// Add School MS Pro dashboard to admin menu for superadmin, principal, staff, teacher
+add_action('admin_menu', function() {
+    // Only show for allowed roles
+    if (!is_user_logged_in()) return;
+    $user = wp_get_current_user();
+    $allowed = array('administrator', 'super_admin', 'principal', 'staff', 'teacher');
+    $user_roles = (array) $user->roles;
+    $is_super_admin = function_exists('is_super_admin') && is_super_admin();
+    $has_role = array_intersect($allowed, $user_roles);
+    if ($is_super_admin || $has_role) {
+        add_menu_page(
+            'School MS Pro',
+            'School MS Pro',
+            'read',
+            'schoolms-dashboard',
+            function() {
+                echo do_shortcode('[schoolms_dashboard]');
+            },
+            'dashicons-welcome-learn-more',
+            2
+        );
+        // Add Help/Shortcodes submenu
+        add_submenu_page(
+            'schoolms-dashboard',
+            'Help & Shortcodes',
+            'Help & Shortcodes',
+            'read',
+            'schoolms-help',
+            function() {
+                if (class_exists('School_MS_Pro_Shortcodes')) {
+                    echo School_MS_Pro_Shortcodes::shortcode_help_guide();
+                }
+            }
+        );
+    }
 });
 
 // Run installer on plugin activation

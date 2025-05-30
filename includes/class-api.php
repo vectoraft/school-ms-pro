@@ -169,6 +169,12 @@ class School_MS_Pro_API {
                 'callback' => [self::class, 'handle_export_csv'],
                 'permission_callback' => function() { return current_user_can('manage_options'); },
             ]);
+            // Global search endpoint
+            register_rest_route('schoolms/v1', '/search', [
+                'methods' => 'GET',
+                'callback' => [self::class, 'global_search'],
+                'permission_callback' => function() { return is_user_logged_in(); },
+            ]);
         });
     }
     // Books
@@ -439,5 +445,32 @@ class School_MS_Pro_API {
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $type . '.csv"',
         ]);
+    }
+    // Global search
+    public static function global_search($request) {
+        global $wpdb;
+        $q = '%' . $wpdb->esc_like($request['q']) . '%';
+        $results = [];
+        // Students
+        $students = $wpdb->get_results($wpdb->prepare("SELECT id, name FROM {$wpdb->prefix}schoolms_students WHERE name LIKE %s OR email LIKE %s LIMIT 10", $q, $q));
+        foreach ($students as $s) {
+            $results[] = [ 'type' => 'Student', 'label' => $s->name, 'url' => '/student-profile/' . $s->id ];
+        }
+        // Teachers (admins)
+        $teachers = $wpdb->get_results($wpdb->prepare("SELECT id, name FROM {$wpdb->prefix}schoolms_admins WHERE name LIKE %s OR email LIKE %s LIMIT 10", $q, $q));
+        foreach ($teachers as $t) {
+            $results[] = [ 'type' => 'Teacher', 'label' => $t->name, 'url' => '/teacher-profile/' . $t->id ];
+        }
+        // Parents
+        $parents = $wpdb->get_results($wpdb->prepare("SELECT id, name FROM {$wpdb->prefix}schoolms_parents WHERE name LIKE %s OR email LIKE %s LIMIT 10", $q, $q));
+        foreach ($parents as $p) {
+            $results[] = [ 'type' => 'Parent', 'label' => $p->name, 'url' => '/parent-profile/' . $p->id ];
+        }
+        // Messages
+        $messages = $wpdb->get_results($wpdb->prepare("SELECT id, message FROM {$wpdb->prefix}schoolms_messages WHERE message LIKE %s LIMIT 10", $q));
+        foreach ($messages as $m) {
+            $results[] = [ 'type' => 'Message', 'label' => mb_strimwidth($m->message, 0, 60, '...'), 'url' => '/messages/' . $m->id ];
+        }
+        return rest_ensure_response($results);
     }
 }
