@@ -1,0 +1,4 @@
+msgid "School MS Pro"
+msgstr "School MS Pro"
+
+# ...translation strings...

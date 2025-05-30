@@ -1,0 +1,3 @@
+<?php
+// Clean uninstaller: removes all plugin data/settings if desired
+// ...existing code...
