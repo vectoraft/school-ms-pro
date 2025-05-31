@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PDFExport from './PDFExport.jsx';
 import axios from '../axios.js';
+import { t } from '../t.js';
 
 const StudentsPage = () => {
   const tableRef = useRef();
@@ -85,12 +86,12 @@ const StudentsPage = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 text-primary">Students <span className="text-gray-400 text-base">(Dynamic from API)</span></h2>
+      <h2 className="text-xl font-bold mb-4" data-tip={t("Manage all students, add, import/export, and filter by class or section.")}>{t('Students')} <span className="text-gray-400 text-base">({t('Dynamic from API')})</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input
             type="text"
-            placeholder="Search by name or email..."
+            placeholder={t("Search by name or email...")}
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="border px-2 py-1 rounded"
@@ -102,10 +103,10 @@ const StudentsPage = () => {
         <table ref={tableRef} className="min-w-full table">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>ID {sortKey === 'id' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>Name {sortKey === 'name' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('grade')}>Grade {sortKey === 'grade' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('email')}>Email {sortKey === 'email' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>{t('ID')} {sortKey === 'id' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>{t('Name')} {sortKey === 'name' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('grade')}>{t('Grade')} {sortKey === 'grade' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('email')}>{t('Email')} {sortKey === 'email' ? (sortAsc ? '▲' : '▼') : ''}</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -119,7 +120,7 @@ const StudentsPage = () => {
             ))}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={4} className="text-center py-4 text-gray-400">No students found.</td>
+                <td colSpan={4} className="text-center py-4 text-gray-400">{t('No students found.')}</td>
               </tr>
             )}
           </tbody>

@@ -27,4 +27,9 @@ class School_MS_Pro_Timetable {
         $table = $wpdb->prefix . 'schoolms_periods';
         return $wpdb->update($table, ['teacher_id' => $teacher_id], ['id' => $period_id]);
     }
+    public static function get_timetable_by_teacher($teacher_id) {
+        global $wpdb;
+        $table = $wpdb->prefix . 'schoolms_periods';
+        return $wpdb->get_results($wpdb->prepare("SELECT * FROM $table WHERE teacher_id = %d ORDER BY start_time ASC", $teacher_id));
+    }
 }

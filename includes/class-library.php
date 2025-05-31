@@ -50,8 +50,14 @@ class School_MS_Pro_Library {
         $table = $wpdb->prefix . 'schoolms_books';
         $where = '1=1';
         $params = [];
-        foreach ($filters as $key => $val) {
-            $where .= $wpdb->prepare(" AND `$key` = %s", $val);
+        if (isset($filters['title'])) {
+            $where .= $wpdb->prepare(" AND title LIKE %s", '%' . $wpdb->esc_like($filters['title']) . '%');
+        }
+        if (isset($filters['author'])) {
+            $where .= $wpdb->prepare(" AND author LIKE %s", '%' . $wpdb->esc_like($filters['author']) . '%');
+        }
+        if (isset($filters['status'])) {
+            $where .= $wpdb->prepare(" AND status = %s", $filters['status']);
         }
         return $wpdb->get_results("SELECT * FROM $table WHERE $where");
     }

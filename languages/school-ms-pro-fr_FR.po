@@ -1,0 +1,44 @@
+msgid "Students"
+msgstr "Étudiants"
+
+msgid "Teachers"
+msgstr "Enseignants"
+
+msgid "Parents"
+msgstr "Parents"
+
+msgid "Library"
+msgstr "Bibliothèque"
+
+msgid "Fees"
+msgstr "Frais"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Messaging"
+msgstr "Messagerie"
+
+msgid "Analytics"
+msgstr "Analytique"
+
+msgid "Audit Log"
+msgstr "Journal d'audit"
+
+msgid "Roles"
+msgstr "Rôles"
+
+msgid "Sessions & Promotion"
+msgstr "Sessions et Promotion"
+
+msgid "Activity Timeline"
+msgstr "Chronologie d'activité"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Support"
+msgstr "Assistance"

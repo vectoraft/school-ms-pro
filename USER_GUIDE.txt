@@ -1,0 +1,75 @@
+School MS Pro — User Guide (v1.0)
+==================================
+
+Welcome to School MS Pro! This guide will help you get started, use all features, and make the most of your school management system.
+
+---
+
+1. INSTALLATION & SETUP
+----------------------
+- Upload and activate the plugin in your WordPress admin (Plugins > Add New > Upload).
+- On activation, all required database tables are created automatically.
+- Access the plugin from the WordPress admin sidebar: "School MS Pro".
+- Configure global settings (theme, logo, color) in Settings > School MS Pro.
+
+2. DASHBOARD & MAIN PANELS
+--------------------------
+- The main dashboard shows live stats, analytics, and quick links to all modules.
+- Use the sidebar to navigate between Students, Teachers, Parents, Library, Fees, Analytics, and more.
+- All tables support search, sort, export (PDF/CSV), and bulk actions.
+
+3. SHORTCODES & ELEMENTOR
+-------------------------
+- You can place any School MS Pro panel on any page/post using shortcodes:
+
+  [schoolms_dashboard] — Main dashboard (React)
+  [schoolms_login] — Login form
+  [schoolms_students] — Students table
+  [schoolms_teachers] — Teachers table
+  [schoolms_parents] — Parents table
+  [schoolms_library] — Library/books
+  [schoolms_fees] — Fees/payments
+  [schoolms_notifications] — Notifications
+  [schoolms_messages] — Messaging
+  [schoolms_analytics] — Analytics
+  [schoolms_audit] — Audit log
+  [schoolms_roles] — Roles/permissions
+
+- For Elementor: Use the "Shortcode" widget and paste any of the above codes.
+- All main panels are also available as Elementor widgets (drag-and-drop in the Elementor editor).
+
+4. MAIN FEATURES
+----------------
+- Students: Add/edit/delete, import/export CSV, filter by class/section, view profiles, link parents.
+- Teachers: Add/edit/delete, assign subjects/classes, view schedules, profiles.
+- Parents: Add/edit/delete, link to students, view communication and fee status.
+- Sessions/Classes: Manage academic years, classes, promote students in bulk.
+- Library: Add books, issue/return, track availability, search/filter.
+- Fees: Record fees, track payments, send reminders, print/download receipts, bulk invoice.
+- Notifications: Send to any group, schedule alerts, track read/unread, email/SMS integration.
+- Messaging: Internal inbox/outbox, threaded conversations, attachments, group/bulk messaging.
+- Analytics: Live stats, charts, custom reports, export analytics.
+- Audit Log: Track all actions, filter/search, download logs.
+- Roles & Permissions: Granular access control for all modules.
+
+5. GLOBAL SEARCH
+----------------
+- Use the search bar at the top of the sidebar to instantly find any student, teacher, parent, or message.
+
+6. BULK ACTIONS
+---------------
+- Import/export students, teachers, staff, subjects, classes, and library via CSV.
+- Batch messaging, notifications, and promotions are available in relevant modules.
+
+7. RESPONSIVE & THEME FRIENDLY
+------------------------------
+- The plugin is fully responsive and inherits your site’s theme colors and fonts.
+
+8. HELP & SUPPORT
+-----------------
+- For a quick reference, download the Shortcodes & Elementor Guide from the plugin admin menu.
+- For support, visit the plugin’s support page or contact your site administrator.
+
+---
+
+Thank you for choosing School MS Pro!

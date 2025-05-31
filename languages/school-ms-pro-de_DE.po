@@ -1,0 +1,59 @@
+msgid "School MS Pro"
+msgstr "Schulverwaltung Pro"
+
+msgid "Student"
+msgstr "Schüler"
+
+msgid "Teacher"
+msgstr "Lehrer"
+
+msgid "Parent"
+msgstr "Elternteil"
+
+msgid "Library"
+msgstr "Bibliothek"
+
+msgid "Fees"
+msgstr "Gebühren"
+
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+msgid "Messaging"
+msgstr "Nachrichten"
+
+msgid "Analytics"
+msgstr "Analytik"
+
+msgid "Audit Log"
+msgstr "Prüfprotokoll"
+
+msgid "Roles"
+msgstr "Rollen"
+
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+msgid "Dashboard"
+msgstr "Armaturenbrett"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Support"
+msgstr "Unterstützung"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Session"
+msgstr "Sitzung"
+
+msgid "Class"
+msgstr "Klasse"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Logout"
+msgstr "Abmelden"

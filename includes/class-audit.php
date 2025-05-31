@@ -26,4 +26,17 @@ class School_MS_Pro_Audit {
         $table = $wpdb->prefix . 'schoolms_audit';
         return $wpdb->delete($table, ['id' => $event_id]);
     }
+    public static function download_log_csv() {
+        global $wpdb;
+        $table = $wpdb->prefix . 'schoolms_audit';
+        $rows = $wpdb->get_results("SELECT * FROM $table");
+        $csv = "id,user_id,action,details,created_at\n";
+        foreach ($rows as $row) {
+            $csv .= "$row->id,$row->user_id,$row->action,\"" . str_replace('"', '""', $row->details) . "\",$row->created_at\n";
+        }
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="schoolms-audit-log.csv"');
+        echo $csv;
+        exit;
+    }
 }

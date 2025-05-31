@@ -1,0 +1,44 @@
+msgid "Students"
+msgstr "छात्र"
+
+msgid "Teachers"
+msgstr "शिक्षक"
+
+msgid "Parents"
+msgstr "अभिभावक"
+
+msgid "Library"
+msgstr "पुस्तकालय"
+
+msgid "Fees"
+msgstr "शुल्क"
+
+msgid "Notifications"
+msgstr "सूचनाएँ"
+
+msgid "Messaging"
+msgstr "संदेश"
+
+msgid "Analytics"
+msgstr "विश्लेषण"
+
+msgid "Audit Log"
+msgstr "ऑडिट लॉग"
+
+msgid "Roles"
+msgstr "भूमिकाएँ"
+
+msgid "Sessions & Promotion"
+msgstr "सत्र और पदोन्नति"
+
+msgid "Activity Timeline"
+msgstr "गतिविधि समयरेखा"
+
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+msgid "Support"
+msgstr "सहायता"

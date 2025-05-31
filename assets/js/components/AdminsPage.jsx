@@ -154,8 +154,8 @@ const AdminsPage = () => {
 
   return (
     <div>
-      <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
-      <h2 className="text-xl font-bold mb-4">Admins</h2>
+      <Toast message={toast.message ? t(toast.message) : ''} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
+      <h2 className="text-xl font-bold mb-4" data-tip="See all recent actions and changes in your school system.">Audit Log <span className="text-gray-400 text-base">(Dynamic from API)</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input
@@ -165,7 +165,7 @@ const AdminsPage = () => {
             onChange={e => setSearch(e.target.value)}
             className="border px-2 py-1 rounded"
           />
-          <button onClick={openAdd} className="px-3 py-1 bg-primary text-white rounded hover:bg-blue-700">Add Admin</button>
+          <button onClick={openAdd} className="px-3 py-1 bg-primary text-white rounded hover:bg-blue-700">{t('Add Admin')}</button>
         </div>
         <PDFExport htmlContent={getTableHtml()} />
       </div>
@@ -173,11 +173,11 @@ const AdminsPage = () => {
         <table ref={tableRef} className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>ID {sortKey === 'id' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>Name {sortKey === 'name' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('email')}>Email {sortKey === 'email' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('role')}>Role {sortKey === 'role' ? (sortAsc ? '▲' : '▼') : ''}</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>{t('ID')} {sortKey === 'id' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>{t('Name')} {sortKey === 'name' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('email')}>{t('Email')} {sortKey === 'email' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('role')}>{t('Role')} {sortKey === 'role' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2">{t('Actions')}</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -195,13 +195,13 @@ const AdminsPage = () => {
             ))}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-400">No admins found.</td>
+                <td colSpan={5} className="text-center py-4 text-gray-400">{t('No admins found.')}</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
-      <ModalForm open={modalOpen} title={editAdmin ? 'Edit Admin' : 'Add Admin'} onClose={closeModal}>
+      <ModalForm open={modalOpen} title={editAdmin ? t('Edit Admin') : t('Add Admin')} onClose={closeModal}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block mb-1 font-medium">Name</label>
@@ -220,8 +220,8 @@ const AdminsPage = () => {
             </select>
           </div>
           <div className="flex justify-end gap-2">
-            <button type="button" className="px-4 py-2 bg-gray-200 rounded" onClick={closeModal}>Cancel</button>
-            <button type="submit" className="px-4 py-2 bg-primary text-white rounded" disabled={submitting}>{submitting ? 'Saving...' : (editAdmin ? 'Update' : 'Create')}</button>
+            <button type="button" className="px-4 py-2 bg-gray-200 rounded" onClick={closeModal}>{t('Cancel')}</button>
+            <button type="submit" className="px-4 py-2 bg-primary text-white rounded" disabled={submitting}>{submitting ? t('Saving...') : (editAdmin ? t('Update') : t('Create'))}</button>
           </div>
         </form>
       </ModalForm>

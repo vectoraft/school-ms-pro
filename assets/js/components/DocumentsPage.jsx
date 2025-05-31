@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PDFExport from './PDFExport.jsx';
 import axios from '../axios.js';
+import { t } from '../t.js';
 
 const DocumentsPage = () => {
   const tableRef = useRef();
@@ -85,7 +86,7 @@ const DocumentsPage = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Documents <span className="text-gray-400 text-base">(Dynamic from API)</span></h2>
+      <h2 className="text-xl font-bold mb-4" data-tip={t("Track and manage all library books, issues, and returns.")}>{t('Library')} <span className="text-gray-400 text-base">({t('Dynamic from API')})</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input

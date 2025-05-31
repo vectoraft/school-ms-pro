@@ -122,7 +122,7 @@ const AccountsPage = () => {
 
   return (
     <div>
-      <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
+      <Toast message={toast.message ? t(toast.message) : ''} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
       <h2 className="text-xl font-bold mb-4">Accounts</h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
@@ -141,11 +141,11 @@ const AccountsPage = () => {
         <table ref={tableRef} className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>ID {sortKey === 'id' ? (sortAsc ? '\u25b2' : '\u25bc') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>Name {sortKey === 'name' ? (sortAsc ? '\u25b2' : '\u25bc') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('balance')}>Balance {sortKey === 'balance' ? (sortAsc ? '\u25b2' : '\u25bc') : ''}</th>
-              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('type')}>Type {sortKey === 'type' ? (sortAsc ? '\u25b2' : '\u25bc') : ''}</th>
-              <th className="px-4 py-2">Actions</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('id')}>{t('ID')} {sortKey === 'id' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('name')}>{t('Name')} {sortKey === 'name' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('balance')}>{t('Balance')} {sortKey === 'balance' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort('type')}>{t('Type')} {sortKey === 'type' ? (sortAsc ? '▲' : '▼') : ''}</th>
+              <th className="px-4 py-2">{t('Actions')}</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -163,13 +163,13 @@ const AccountsPage = () => {
             ))}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-400">No accounts found.</td>
+                <td colSpan={5} className="text-center py-4 text-gray-400">{t('No accounts found.')}</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
-      <ModalForm open={modalOpen} title={editAccount ? 'Edit Account' : 'Add Account'} onClose={closeModal}>
+      <ModalForm open={modalOpen} title={editAccount ? t('Edit Account') : t('Add Account')} onClose={closeModal}>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block mb-1 font-medium">Name</label>
@@ -184,8 +184,8 @@ const AccountsPage = () => {
             <input name="type" defaultValue={editAccount?.type || ''} required className="w-full border px-3 py-2 rounded" />
           </div>
           <div className="flex justify-end gap-2">
-            <button type="button" className="px-4 py-2 bg-gray-200 rounded" onClick={closeModal}>Cancel</button>
-            <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded" disabled={submitting}>{submitting ? 'Saving...' : (editAccount ? 'Update' : 'Create')}</button>
+            <button type="button" className="px-4 py-2 bg-gray-200 rounded" onClick={closeModal}>{t('Cancel')}</button>
+            <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded" disabled={submitting}>{submitting ? t('Saving...') : (editAccount ? t('Update') : t('Create'))}</button>
           </div>
         </form>
       </ModalForm>

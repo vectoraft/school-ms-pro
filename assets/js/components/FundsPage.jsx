@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import PDFExport from './PDFExport.jsx';
 import ModalForm from './ModalForm.jsx';
 import Toast from './Toast.jsx';
+import { t } from '../t.js';
 
 const FundsPage = () => {
   const tableRef = useRef();
@@ -123,7 +124,7 @@ const FundsPage = () => {
   return (
     <div>
       <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
-      <h2 className="text-xl font-bold mb-4">Funds</h2>
+      <h2 className="text-xl font-bold mb-4" data-tip={t("Manage all fees, payments, and outstanding dues.")}>{t('Fees')} <span className="text-gray-400 text-base">({t('Dynamic from API')})</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input

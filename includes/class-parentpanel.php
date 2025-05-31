@@ -38,6 +38,13 @@ class School_MS_Pro_ParentPanel {
     public static function get_linked_students($parent_id) {
         global $wpdb;
         $table = $wpdb->prefix . 'schoolms_parent_students';
-        return $wpdb->get_results($wpdb->prepare("SELECT * FROM $table WHERE parent_id = %d", $parent_id));
+        $student_table = $wpdb->prefix . 'schoolms_students';
+        $links = $wpdb->get_results($wpdb->prepare("SELECT student_id FROM $table WHERE parent_id = %d", $parent_id));
+        $students = [];
+        foreach ($links as $link) {
+            $student = $wpdb->get_row($wpdb->prepare("SELECT * FROM $student_table WHERE id = %d", $link->student_id));
+            if ($student) $students[] = $student;
+        }
+        return $students;
     }
 }

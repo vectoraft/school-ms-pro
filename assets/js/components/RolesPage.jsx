@@ -120,7 +120,7 @@ const RolesPage = () => {
   return (
     <div>
       <Toast message={toast.message} type={toast.type} onClose={() => setToast({ message: '', type: 'success' })} />
-      <h2 className="text-xl font-bold mb-4">Roles Management</h2>
+      <h2 className="text-xl font-bold mb-4" data-tip="Manage user roles and permissions for all modules.">Roles <span className="text-gray-400 text-base">(Dynamic from API)</span></h2>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
         <div className="flex gap-2">
           <input

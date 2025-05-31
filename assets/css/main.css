@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   background: #fff;
   color: #111;
   min-height: 100vh;
@@ -29,6 +29,7 @@ button {
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
 }
+
 button:hover, button:focus {
   background: #1746b3;
   color: #fff;
@@ -39,10 +40,12 @@ button:hover, button:focus {
   border-collapse: collapse;
   background: #fff;
 }
+
 .table th, .table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #e5e7eb;
 }
+
 .table th {
   background: #fff;
   color: #111;
@@ -50,6 +53,7 @@ button:hover, button:focus {
   font-size: 0.9rem;
   font-weight: 700;
 }
+
 .table tr:hover {
   background: #f3f4f6;
 }
@@ -58,6 +62,7 @@ button:hover, button:focus {
   width: 8px;
   background: #e5e7eb;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #2563eb;
   border-radius: 4px;
@@ -66,17 +71,20 @@ button:hover, button:focus {
 .rounded {
   border-radius: 0.5rem;
 }
+
 .shadow {
-  box-shadow: 0 2px 8px 0 rgba(37,99,235,0.08);
+  box-shadow: 0 2px 8px 0 rgb(37 99 235 / 8%);
 }
+
 .bg-primary {
   background: #2563eb !important;
   color: #fff !important;
 }
+
 .text-primary {
   color: #2563eb !important;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .hide-mobile { display: none !important; }
 }

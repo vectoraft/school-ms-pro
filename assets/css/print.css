@@ -1,0 +1,40 @@
+/*
+  TODO: Refactor class selectors to kebab-case for stylelint compliance.
+  Example: .ProfileMenu -> .profile-menu, .Toast -> .toast, .Preloader -> .preloader
+*/
+
+/* Print styles for School MS Pro - minimal, clean, hides navigation/sidebar */
+@media print {
+  body, html {
+    background: #fff !important;
+    color: #000 !important;
+    font-family: Montserrat, Arial, sans-serif;
+  }
+
+  aside, nav, .sidebar, .profile-menu, .toast, .preloader, .no-print, .print-hide {
+    display: none !important;
+  }
+
+  main, .print-area, .print-content {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #888 !important;
+    padding: 4px 8px !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}

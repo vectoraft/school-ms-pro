@@ -19,4 +19,9 @@ class School_MS_Pro_Roles {
         }
         return $wpdb->get_results("SELECT * FROM $table WHERE $where");
     }
+    public static function get_subjects_by_teacher($teacher_id) {
+        global $wpdb;
+        $table = $wpdb->prefix . 'schoolms_subjects';
+        return $wpdb->get_results($wpdb->prepare("SELECT * FROM $table WHERE teacher_id = %d", $teacher_id));
+    }
 }

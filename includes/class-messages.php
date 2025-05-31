@@ -33,4 +33,20 @@ class School_MS_Pro_Messages {
         $table = $wpdb->prefix . 'schoolms_messages';
         return $wpdb->update($table, ['read' => 1], ['id' => $message_id]);
     }
+    public static function get_messages($filters = []) {
+        global $wpdb;
+        $table = $wpdb->prefix . 'schoolms_messages';
+        $where = '1=1';
+        $params = [];
+        if (isset($filters['student_id'])) {
+            $where .= $wpdb->prepare(" AND to_user = %d", $filters['student_id']);
+        }
+        if (isset($filters['parent_id'])) {
+            $where .= $wpdb->prepare(" AND to_user = %d", $filters['parent_id']);
+        }
+        if (isset($filters['teacher_id'])) {
+            $where .= $wpdb->prepare(" AND to_user = %d", $filters['teacher_id']);
+        }
+        return $wpdb->get_results("SELECT * FROM $table WHERE $where");
+    }
 }
